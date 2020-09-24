@@ -1,2 +1,3 @@
 # HW.Folkers
-Cassie Folkers UCI Homework
+
+Within this folder will be all submitted homework for Cassie Folkers.
