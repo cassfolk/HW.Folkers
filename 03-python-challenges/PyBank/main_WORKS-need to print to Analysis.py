@@ -7,7 +7,6 @@ total_months = 0
 total_money = 0
 row_b2_values = []
 row_b3_values = []
-# net_change_values = []
 net_change_date = []
 
 with open(budget_csv) as csv_file:
