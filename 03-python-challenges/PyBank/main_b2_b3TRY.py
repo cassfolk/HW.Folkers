@@ -5,20 +5,14 @@ budget_csv = os.path.join("Resources", "budget_data.csv")
 
 total_months = 0
 total_money = 0
-net_change_values = []
+row_b2_values = []
+row_b3_values = []
+# net_change_values = []
 net_change_date = []
 
 with open(budget_csv) as csv_file:
     csv_budget = csv.reader(csv_file, delimiter=",")
     header = next(csv_budget)
-    first_row = next(csv_budget)
-
-    #because of first row (for net change) sets values as row 1 before 
-    total_months += 1
-    total_money += int(first_row[1])
-
-    #*******THERE RIGHT THERE********
-    previous_next = int(first_row[1])
 
     #count rows MINUS HEADER (above) for file
     for row in csv_budget:
@@ -29,17 +23,28 @@ with open(budget_csv) as csv_file:
         #sum for total money
         total_money += int(row[1])
 
-        #get net change (aka diff between b2 & b3 etc)
-        #*******THERE RIGHT THERE********
-        net_change = int(row[1]) - previous_next
-        net_change_values += [net_change]
+        row_b2 = int(row[1])
+        row_b2_values += [row_b2]
+
+
+with open(budget_csv) as csv_file:
+    csv_budget = csv.reader(csv_file, delimiter=",")
+    header = next(csv_budget)
+    #skip down to first row (aka take out first b2 value so we can do b2 - b3)
+    first_row = next(csv_budget)
+
+    for row in csv_budget:
+
+        row_b3 = int(row[1])
+        row_b3_values += [row_b3]
     
         #get date net change from row 0 (so you can use it to find date of net_change)
         net_change_date += [row[0]]
-       
-        print(previous_next)
-        # print(int(row[1]))
-        # print(int(first_row[1]))
+
+row_b2_values.remove(671099)
+
+net_change_values = [row_b3_values - row_b2_values for row_b3_values, row_b2_values in zip(row_b3_values, row_b2_values)]
+# print(net_change_values)
 
 increase = max(net_change_values)
 decrease = min(net_change_values)
@@ -65,4 +70,4 @@ print(f"Total: ${total_money}")
 print(f"Average Change: ${average_change:.2f}") 
 
 print(f"Greatest Increase in Profits: {greatest_increase}")    
-print(f"Greatest Decrease in Profits: {greatest_decrease}")  
+print(f"Greatest Decrease in Profits: {greatest_decrease}")
