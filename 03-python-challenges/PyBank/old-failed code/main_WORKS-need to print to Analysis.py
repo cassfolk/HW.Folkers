@@ -62,7 +62,7 @@ for row_b3_values, row_b2_values in zip(row_b3_values, row_b2_values):
 increase = max(net_change_values)
 decrease = min(net_change_values)
 
-# find indes of the increase/decrease soo....
+# find indexs of the increase/decrease soo....
 index_increase = net_change_values.index(increase)
 index_decrease = net_change_values.index(decrease)
 
@@ -74,7 +74,7 @@ greatest_decrease = f"{net_change_date[index_decrease]} (${decrease})"
 average_change = sum(net_change_values) / len(net_change_values)
 
 # PRINT ALL THE THINGS
-print("Finacial Analysis")
+print("Financial Analysis")
 print("-----------------------")
 print(f"Total Months: {total_months}")
 print(f"Total: ${total_money}")
@@ -83,4 +83,4 @@ print(f"Average Change: ${average_change:.2f}")
 print(f"Greatest Increase in Profits: {greatest_increase}")    
 print(f"Greatest Decrease in Profits: {greatest_decrease}")
 
-# now text print out to Anyalysis
+# now text print out to Analysis
