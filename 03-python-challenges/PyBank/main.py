@@ -66,7 +66,7 @@ print(f"Average Change: ${average_change:.2f}")
 print(f"Greatest Increase in Profits: {greatest_increase}")    
 print(f"Greatest Decrease in Profits: {greatest_decrease}")  
 
-# NEED TO PRINT TO TEXT
+# PRINT TO TEXT
 
 out_put = os.path.join("Analysis", "New_Analysis.txt")
 with open(out_put, 'w') as csv_output:
