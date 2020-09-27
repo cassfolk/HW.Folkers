@@ -7,23 +7,25 @@ import csv
 election_csv = os.path.join("Resources", "election_data_MINI.csv")
 
 total_votes = 0
-candidate_votes = 0
+# candidate_votes = 0
 # candidate_percent = 0
+# candidates = ["Khan", "Correy", "Li", "O'Tooley"]
+# candidate_vote_totals = [0, 0, 0, 0]
+
 candidates = ["Khan", "Correy", "Li", "O'Tooley"]
-candidate_vote_totals = []
 
-def vote_divide(vote_calc):
-    candidate_votes = 5
-    CDV = []
+candidates_info = {"Khan": 0, "Correy": 0, "Li": 0, "O'Tooley": 0}
 
-    for row in csvreader:
-        if (name == row[2]):   
-            candidate_votes = int(row[2])
-            CDV = [candidate_votes]
+def vote_print(name, candidates_info):
+    
+    print("Election Results")
+    print("-----------------------")
+    print(f"Total Votes: {total_votes}")
+    print("-----------------------")
+    
+    for name in candidates:
+        print(f"{name} {candidates_info[name]}")
 
-    # total_votes works/reads as 3521001 when print here
-    print(f"{name} {candidate_votes}")
-    print(CDV)
     # candidate_percent = (candidate_votes / total_votes) * 100
 
     # print(f"{name}: {candidate_percent}% ({candidate_votes})")
@@ -38,21 +40,11 @@ with open(election_csv, 'r') as csvfile:
         # sum all votes - correct
         total_votes += 1
 
-    
-    for name in candidates:
-        for row in csvreader:
-            if (name == row[2]):
-                candidate_votes += int(row[2])
-                candidate_vote_totals = [candidate_votes]
+        candidates_info[row[2]] += 1
 
-    print(candidate_vote_totals)
 
-    print("Election Results")
-    print("-----------------------")
-    print(f"Total Votes: {total_votes}")
-    print("-----------------------")
-    for name in candidates:
-        vote_divide(name)
+
+    vote_print(candidates, candidates_info)
     
     # print("-----------------------")
     # # print(f"Winner: {}")
