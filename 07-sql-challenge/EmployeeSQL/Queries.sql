@@ -62,3 +62,8 @@ FROM employees
 GROUP BY last_name
 ORDER BY count(last_name) DESC
 ;
+
+-- Epilouge
+SELECT * 
+FROM employees
+WHERE emp_no = 499942;
