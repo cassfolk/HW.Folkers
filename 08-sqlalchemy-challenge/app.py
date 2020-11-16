@@ -47,13 +47,12 @@ def precipitation():
 
     session.close()
 
-    # Convert list of tuples into normal list
     last_12 = []
+
     for date, prcp in last_12_session:
-        last_12_dict = {}
-        last_12_dict["date"] = date
-        last_12_dict["prcp"] = prcp
+        last_12_dict = {date: prcp}
         last_12.append(last_12_dict)
+    
 
     return jsonify(last_12)
 
@@ -81,16 +80,87 @@ def tobs():
     session = Session(engine)
 
     """Query the dates and temperature observations of the most active station for the last year of data."""
-    last_12_temp = (session.query(Measurement.station, Measurement.tobs)
+    last_12_tobs_session = (session.query(Measurement.tobs, Measurement.station, Measurement.date)
                 .filter(Measurement.date > '2016-08-23')
                 .filter(Measurement.station == 'USC00519281')
                 .all())
+
     session.close()
 
-    # Convert list of tuples into normal list
-    last_12_temp_dict = list(np.ravel(last_12_temp))
+    last_12_tobs = []
 
-    return jsonify(last_12_temp_dict)
+    for tobs, station, date in last_12_tobs_session:
+        last_12_tobs_dict = {}
+        last_12_tobs_dict["tobs"] = tobs
+        last_12_tobs_dict["station"] = station
+        last_12_tobs_dict["date"] = date
+        last_12_tobs.append(last_12_tobs_dict)
+
+    return jsonify(last_12_tobs)
+
+@app.route("api/v1.0/<start>/<end>")
+                ##### HERE with start & end?
+                ##### HERE with start & end?
+                ##### HERE with start & end?
+def date(start, end):
+    """Return a JSON list of min temp, avg temp, and max temp for a given start or start-end range."""
+
+    """Start only, calculate TMIN, TAVG, and TMAX for all dates <= to the start date."""
+    # find <= start date
+    session = Session(engine)
+    
+    sel = [func.min(Measurement.tobs), 
+        func.avg(Measurement.tobs),
+        func.max(Measurement.tobs)]
+
+    start_session = (session.query(*sel)
+                ##### HERE with start & end?
+                ##### HERE with start & end?
+                ##### HERE with start & end?
+    .filter(Measurement.date <= start)
+    .all())
+
+
+    """Start & End, calculate the TMIN, TAVG, and TMAX for dates between the start and end date inclusive."""
+    # find between start & end
+    start_end_session = (session.query(*sel)
+                ##### HERE with start & end?
+                ##### HERE with start & end?
+                ##### HERE with start & end?
+    .filter(Measurement.date <= start)
+    .filter(Measurement.date >= end)
+    .all())
+    
+    session.close()
+    
+    
+    # start only
+    start_only = []
+
+    for min, avg, max in start_session:
+        start_dict = {}
+        start_dict["min"] = min
+        start_dict["avg"] = avg
+        start_dict["max"] = max
+        start_only.append(start_dict)
+    
+    # start end 
+    start_end = []
+    for min, avg, max in start_end_session:
+        start_end_dict = {}
+        start_end_dict["min"] = min
+        start_end_dict["avg"] = avg
+        start_end_dict["max"] = max
+        start_end.append(start_end_dict)
+
+                ##### HERE with start & end?
+                ##### HERE with start & end?
+                ##### HERE with start & end?
+    if end == "":
+        return jsonify()
+    else:
+        return jsonify(start_only)
+
 
 
 
