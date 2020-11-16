@@ -102,6 +102,7 @@ def tobs():
                 ##### HERE with start & end?
                 ##### HERE with start & end?
                 ##### HERE with start & end?
+                    ###### might be something with 2010-01-31 date format??? http://127.0.0.1:5000/api/v1.0/2010-01-31/
 def date(start, end):
     """Return a JSON list of min temp, avg temp, and max temp for a given start or start-end range."""
 
@@ -136,7 +137,6 @@ def date(start, end):
     
     # start only
     start_only = []
-
     for min, avg, max in start_session:
         start_dict = {}
         start_dict["min"] = min
@@ -144,7 +144,7 @@ def date(start, end):
         start_dict["max"] = max
         start_only.append(start_dict)
     
-    # start end 
+    # start & end 
     start_end = []
     for min, avg, max in start_end_session:
         start_end_dict = {}
@@ -155,11 +155,11 @@ def date(start, end):
 
                 ##### HERE with start & end?
                 ##### HERE with start & end?
-                ##### HERE with start & end?
+                ##### HERE with start & end? (or also else statement????)
     if end == "":
-        return jsonify()
-    else:
         return jsonify(start_only)
+    else:
+        return jsonify(start_end)
 
 
 
