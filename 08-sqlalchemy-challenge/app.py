@@ -98,69 +98,53 @@ def tobs():
 
     return jsonify(last_12_tobs)
 
-@app.route("api/v1.0/<start>/<end>")
-                ##### HERE with start & end?
-                ##### HERE with start & end?
-                ##### HERE with start & end?
-                    ###### might be something with 2010-01-31 date format??? http://127.0.0.1:5000/api/v1.0/2010-01-31/
-def date(start, end):
+@app.route("/api/v1.0/<start>")
+@app.route("/api/v1.0/<start>/<end>")
+def date(start=None, end=None):
     """Return a JSON list of min temp, avg temp, and max temp for a given start or start-end range."""
-
-    """Start only, calculate TMIN, TAVG, and TMAX for all dates <= to the start date."""
-    # find <= start date
+    
     session = Session(engine)
     
     sel = [func.min(Measurement.tobs), 
         func.avg(Measurement.tobs),
         func.max(Measurement.tobs)]
 
-    start_session = (session.query(*sel)
-                ##### HERE with start & end?
-                ##### HERE with start & end?
-                ##### HERE with start & end?
-    .filter(Measurement.date <= start)
-    .all())
+    # start
+    if end == None:
+        start_session = (session.query(*sel)
+        .filter(Measurement.date >= start)
+        .all())
 
+        session.close()
 
-    """Start & End, calculate the TMIN, TAVG, and TMAX for dates between the start and end date inclusive."""
-    # find between start & end
-    start_end_session = (session.query(*sel)
-                ##### HERE with start & end?
-                ##### HERE with start & end?
-                ##### HERE with start & end?
-    .filter(Measurement.date <= start)
-    .filter(Measurement.date >= end)
-    .all())
-    
-    session.close()
-    
-    
-    # start only
-    start_only = []
-    for min, avg, max in start_session:
-        start_dict = {}
-        start_dict["min"] = min
-        start_dict["avg"] = avg
-        start_dict["max"] = max
-        start_only.append(start_dict)
-    
-    # start & end 
-    start_end = []
-    for min, avg, max in start_end_session:
-        start_end_dict = {}
-        start_end_dict["min"] = min
-        start_end_dict["avg"] = avg
-        start_end_dict["max"] = max
-        start_end.append(start_end_dict)
+        start_only = []
+        for min, avg, max in start_session:
+            start_dict = {}
+            start_dict["min"] = min
+            start_dict["avg"] = avg
+            start_dict["max"] = max
+            start_only.append(start_dict)
 
-                ##### HERE with start & end?
-                ##### HERE with start & end?
-                ##### HERE with start & end? (or also else statement????)
-    if end == "":
         return jsonify(start_only)
+    
+    #start end
     else:
-        return jsonify(start_end)
+        start_end_session = (session.query(*sel)
+        .filter(Measurement.date >= start)
+        .filter(Measurement.date <= end)
+        .all())
 
+        session.close()
+
+        start_end = []
+        for min, avg, max in start_end_session:
+            start_end_dict = {}
+            start_end_dict["min"] = min
+            start_end_dict["avg"] = avg
+            start_end_dict["max"] = max
+            start_end.append(start_end_dict)
+
+        return jsonify(start_end)
 
 
 
