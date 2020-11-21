@@ -14,14 +14,16 @@
 
   <body>
     <!-- Nav bar -->
-    <nav class="navbar navbar-expand-lg navbar-dar bg-light">
-      <a class="navbar-brand" href="#">Latitude</a>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Landing</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+    
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown active">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Plots
             </a>
@@ -30,18 +32,20 @@
               <a class="dropdown-item" href="#">Humidity</a>
               <a class="dropdown-item" href="#">Cloudiness</a>
               <a class="dropdown-item" href="#">Windspeed</a>
-            </div>
+            </div> 
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="#">Comparison</a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Data</a>   
+          <li class="nav-item">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Data</a>
           </li>
         </ul>
-
       </div>
     </nav>
+
+    
 
     <div class="container">
       <div class="row">
@@ -50,21 +54,21 @@
           <div class="box1">
             <h1>Summary: Lattitude vs. X</h1>
             <hr>
-            <img class="image inline" src="https://raw.githubusercontent.com/cassfolk/HW.Folkers/master/09-web-design-challenge/Resources/assets/images/Fig1.png" alt="City Latitude vs. Max Temperature">
+            <img class="inline" id="image" src="https://raw.githubusercontent.com/cassfolk/HW.Folkers/master/09-web-design-challenge/Resources/assets/images/Fig1.png" alt="City Latitude vs. Max Temperature">
             <p>The purpose of this project was to analyze how weather changes as you get closer to the equator. To accomplish this analysis, we fist pulled data fro meh OpenWeatherMap API to assemble a dataset on over 500 cities.<br><br>After assembling the dataset, we used Matplotlib to plot various aspects of the weather vs. latitude. Factors we looked at included: temperature, cloudiness, wind speed, and humidity. This site provides the source data and visualizations created as part of the analysis, as well as the explanations and descriptions of any trends and correlations witnessed.</p>
           </div>
         </div>
         <!-- Visiualizations box -->
+        
+        
         <div class="col-md-4">
           <div class="box2">
             <h1>Visualizations</h1>
             <hr>
-            <p>
               <img class="image" src="https://raw.githubusercontent.com/cassfolk/HW.Folkers/master/09-web-design-challenge/Resources/assets/images/Fig1.png" alt="City Latitude vs. Max Temperature">
               <img class="image" src="https://raw.githubusercontent.com/cassfolk/HW.Folkers/master/09-web-design-challenge/Resources/assets/images/Fig2.png" alt="City Latitude vs. Humidity">
               <img class="image" src="https://raw.githubusercontent.com/cassfolk/HW.Folkers/master/09-web-design-challenge/Resources/assets/images/Fig3.png" alt="City Latitude vs. Cloudiness">
               <img class="image" src="https://raw.githubusercontent.com/cassfolk/HW.Folkers/master/09-web-design-challenge/Resources/assets/images/Fig4.png" alt="City Latitude vs. Windspeed">
-            </p>
           </div>
         </div>
       </div>
