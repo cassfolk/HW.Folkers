@@ -1,0 +1,37 @@
+body {
+    background: rgb(205, 205, 205);
+}
+
+h1 {
+    margin-bottom: 15px;
+}
+
+
+.box1{
+    background: rgb(223, 223, 223);
+    padding: 20px;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.box2{
+    background: rgb(223, 223, 223);
+    padding: 20px;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.image{
+    height: 200px;
+    width: 200px;
+    padding: 5px;
+}
+
+.inline {
+    float: inline-start;
+    margin: 10px 10px 0px 10px;
+}
+
+
