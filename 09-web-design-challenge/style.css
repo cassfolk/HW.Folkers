@@ -4,6 +4,7 @@ body {
 
 h1 {
     margin-bottom: 25px;
+    color: teal;
 }
 
 hr {
@@ -13,8 +14,16 @@ p {
     margin-bottom: 20px;
 }
 
-.box1{
-    background: rgb(223, 223, 223);
+.latcolor {
+    padding: 8px;
+    font-weight: 800;
+    color: #fff !important;
+    background-color: teal;
+}
+
+
+.box{
+    background: white;
     padding: 20px;
     margin-top: 20px;
     margin-right: 10px;
@@ -22,48 +31,69 @@ p {
 }
 
 
-.box2{
-    background: rgb(223, 223, 223);
-    padding: 20px;
-    margin-top: 20px;
-    margin-right: 10px;
-    margin-left: 10px;
+.imagevis {
+    width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+    margin-bottom: 15px;
 }
+
+
+.box > imagevis {
+    object-fit: cover;
+    width: 100%;
+    max-height: 100%;
+  }
+
 
 #image {
     height: 200px;
     width: 200px;
     padding: 8px;
 }
-.image{
-    height: 140px;
+
+
+.image {
     width: 140px;
+    height: 140px;
     padding: 5px;
 }
+
+.box > image {
+    object-fit: cover;
+    width: 50%;
+    max-height: 50%;
+    }
+
+
+.box > h1 {
+    word-wrap: break-word;
+}
+       
 
 .inline {
     float: inline-start;
     margin: 10px 10px 0px 10px;
 }
 
-.align {
-    text-align: right;
+.selected {
+    border: 3px solid teal;
 }
 
-@media (max-width:600px){
-    .box1{
-        background: rgb(223, 223, 223);
+
+@media (max-width: 750px){
+    .box{
+        background: white;
         padding: 10px;
         margin-top: 10px;
         margin-right: 5px;
         margin-left: 5px;
     }
-    
-    .box2{
-        background: rgb(223, 223, 223);
-        padding: 10px;
-        margin-top: 10px;
-        margin-right: 5px;
-        margin-left: 5px;
-    }
+
+    .box > image {
+        object-fit: cover;
+        width: 50%;
+        max-height: 50%;
+        }
 }
