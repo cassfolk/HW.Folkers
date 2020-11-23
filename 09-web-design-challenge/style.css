@@ -1,3 +1,13 @@
+/* general */
+.navbar a.navbar-brand {
+    font-weight: 800;
+    color: #fff !important;
+    background: teal;
+    padding: 12px;
+    margin-bottom: -7px; 
+    margin-top: -7px;
+} 
+
 body {
     background: rgb(205, 205, 205);
 }
@@ -7,20 +17,9 @@ h1 {
     color: teal;
 }
 
-hr {
-    padding: 10px;
+.box > h1 {
+    word-wrap: break-word;
 }
-p {
-    margin-bottom: 20px;
-}
-
-.latcolor {
-    padding: 8px;
-    font-weight: 800;
-    color: #fff !important;
-    background-color: teal;
-}
-
 
 .box{
     background: white;
@@ -29,16 +28,26 @@ p {
     margin-right: 10px;
     margin-left: 10px;
 }
+    
+hr {
+    padding: 10px;
+}
+
+p {
+    margin-bottom: 20px;
+}
 
 
-.imagevis {
+
+
+/* images */
+.imagevis {  /*the current vis image page */
     width: 100%;
     max-height: 100%;
     display: block;
     margin: auto;
     margin-bottom: 15px;
 }
-
 
 .box > imagevis {
     object-fit: cover;
@@ -46,20 +55,22 @@ p {
     max-height: 100%;
   }
 
-
-#image {
+#image {  /* index left image */
     height: 200px;
     width: 200px;
     padding: 8px;
 }
 
+.inline { /* index image inline with text */
+    float: inline-start;
+    margin: 10px 10px 0px 10px;
+}
 
-.image {
+.image { /* images sidebar */
     width: 140px;
     height: 140px;
     padding: 5px;
 }
-
 
 .box > image {
     object-fit: cover;
@@ -67,7 +78,7 @@ p {
     max-height: 50%;
     }
 
-.compareimage {
+.compareimage { /* coparison images (special large snowflakes) */
     width: 100%;
     max-height: 100%;
     display: block;
@@ -75,30 +86,19 @@ p {
     margin-bottom: 15px;
 }
 
-.compareimage:hover {
-    border: 3px solid teal;
+.selectimage:hover { /* hovering over X image */
+    border: 3px solid rgb(165, 164, 197);
     cursor: pointer;
 }
-
-.selectimage:hover {
-    border: 3px solid rgb(4, 0, 135);
-    cursor: pointer;
-}
-
-.box > h1 {
-    word-wrap: break-word;
-}
-       
-
-.inline {
-    float: inline-start;
-    margin: 10px 10px 0px 10px;
-}
-
-.selected {
+   
+.selected {  /* vis current page's image */
     border: 3px solid teal;
 }
 
+
+
+
+/* text for Comparison & Data */
 .center {
     text-align: center;
     color: teal;
@@ -109,12 +109,11 @@ p {
 }
 
 
-/* includes alternating gray and white with on-hover color */
+
+
+/* for table */
 .table {
     font-size: 11pt; 
-    font-family: Arial;
-    border-collapse: collapse; 
-    border: 1px solid silver;
 }
 
 .table td, th {
@@ -130,8 +129,19 @@ p {
 }
 
 
+/* media query */
+@media (max-width: 991px){ /*nav bar*/
+    .navbar {
+        background-color: red !important;
+    }
 
-@media (max-width: 755px){
+    #navbarDropdown { /* plots = grey*/
+        background-color: lightgrey;
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 768px){ /*small*/
     body {
         background: white;
     }
@@ -143,6 +153,10 @@ p {
 
     #clicktext{
         font-size: smaller;
+    }
+
+    .center{
+        font-size: large;
     }
 
     .box{
