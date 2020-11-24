@@ -1,20 +1,11 @@
 /* general */
-.navbar a.navbar-brand {
-    font-weight: 800;
-    color: #fff !important;
-    background: teal;
-    padding: 12px;
-    margin-bottom: -7px; 
-    margin-top: -7px;
-} 
-
 body {
-    background: rgb(205, 205, 205);
+    background: rgb(230, 230, 230);
 }
 
 h1 {
     margin-bottom: 25px;
-    color: teal;
+    color: rgb(78, 170, 164);
 }
 
 .box > h1 {
@@ -38,6 +29,28 @@ p {
 }
 
 
+/* nav bar */
+.navbar-brand {
+    font-weight: 800;
+    color: #fff !important;
+    background: rgb(78, 170, 164);
+    padding: 10px;
+    margin-bottom: -10px; 
+    margin-top: -10px;
+    margin-left: -20px
+} 
+
+.nav-item:hover {
+    background-color: lightgrey;
+}
+
+.dropdown-toggle {
+    align-self: flex-end;
+}
+
+.dropdown-menu {
+    text-align: end;
+}
 
 
 /* images */
@@ -92,7 +105,7 @@ p {
 }
    
 .selected {  /* vis current page's image */
-    border: 3px solid teal;
+    border: 3px solid rgb(78, 170, 164);
 }
 
 
@@ -101,7 +114,7 @@ p {
 /* text for Comparison & Data */
 .center {
     text-align: center;
-    color: teal;
+    color: rgb(78, 170, 164);
 }
 
 #clicktext {
@@ -131,14 +144,28 @@ p {
 
 /* media query */
 @media (max-width: 991px){ /*nav bar*/
-    .navbar {
-        background-color: red !important;
+    .container-fluid {
+        background-color: rgb(78, 170, 164) !important;
+        margin-bottom: -5px; 
+        margin-top: -5px; 
+        background-size: contain;
+    }
+    .navbar-brand {
+        font-weight: 800;
+        color: #fff !important;
+        background: rgb(78, 170, 164);
+        padding: 0px;
+        margin-left: 5px;
     }
 
-    #navbarDropdown { /* plots = grey*/
-        background-color: lightgrey;
-        margin-top: 15px;
+    .collapse { /* plots = grey*/
+        padding-top: 10px;
     }
+
+    .dropdown-menu-right {
+        text-align: left;
+    }
+
 }
 
 @media (max-width: 768px){ /*small*/
