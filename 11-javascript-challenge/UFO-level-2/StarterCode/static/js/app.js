@@ -28,68 +28,95 @@ function retrieveFilter() {
     var inputElementShape = d3.select("#shape");
     var inputValueShape= inputElementShape.property("value");
     
-    // console.log(inputValueDate);
-    // console.log(inputValueCity);
-    // console.log(inputValueState);
-    // console.log(inputValueCountry);
-    // console.log(inputValueShape);
+    console.log(inputValueDate);
+    console.log(inputValueCity);
+    console.log(inputValueState);
+    console.log(inputValueCountry);
+    console.log(inputValueShape);
 
-                // var answers = [{"datetime": inputValueDate, 
-                //     "city": inputValueCity, 
-                //     "state": inputValueState, 
-                //     "country": inputValueCountry, 
-                //     "shape": inputValueShape}];
+            // var answers = [{"datetime": inputValueDate, 
+            //     "city": inputValueCity, 
+            //     "state": inputValueState, 
+            //     "country": inputValueCountry, 
+            //     "shape": inputValueShape}];
+            // console.log(answers);
 
-                // console.log(answers);
-
+    function filterByInputs(info) {
             // Trying to get a object with only the filled out values doesn't work
-            // function filterByInputs(info) {
-            //     for (var i = 0; i < answers.length; i++) {
-            //         info.datetime === inputValueDate;
-            //         info.city === inputValueCity;;
-            //         info.state === inputValueState;
-            //         info.country === inputValueCountry;
-            //         info.shape === inputValueShape;
-            //     };
-
-        
-                    // Filter if else if else filled out DOES NOT WORK TRY ^^^^
-                    // DOESN"T WORK
-                    // if (inputValueDate === "" && inputValueCity === "" && inputValueState === "" && inputValueCountry === "") {
-                    //     return info.shape === inputValueShape;
-                    // }
-                    // else if (inputValueDate === "" && inputValueCity === "" && inputValueState === "") {
-                    //     return info.shape === inputValueShape && info.country === inputValueCountry;
-                    // }
-                    // else if (inputValueDate === "" && inputValueCity === "") {
-                    //     return info.shape === inputValueShape && info.country === inputValueCountry && info.state === inputValueState;
-                    // }
-                    // else if (inputValueDate === "") {
-                    //     return info.shape === inputValueShape && info.country === inputValueCountry && info.state === inputValueState && info.city === inputValueCity;
-                    // }
-                    // else 
-                    //     return info.datetime === inputValueDate;
+            // for (var i = 0; i < answers.length; i++) {
+            //     if (answers.datetime !== "") {
+            //         return info.datetime === inputValueDate;
+            //     }
+            //     if (answers.city !== "") {
+            //         return info.city === inputValueCity;
+            //     }
+            //     if (answers.state !== "") {
+            //         return info.state === inputValueState;
+            //     }
+            //     if (answers.country !== "") {
+            //         return info.country === inputValueCountry;
+            //     }
+            //     if (answers.shape !== "") {
+            //         return info.shape === inputValueShape;
+            //     }
             // };
+        
+        /////////// THIS WORKS IF THE VALUES ARE LEFT BLANK AND FILLED FROM THE BOTTOM UP!!!!
+        // if (inputValueDate === "" && inputValueCity === "" && inputValueState === "" && inputValueCountry === "") {
+        //     return info.shape === inputValueShape;
+        // }
+        // else if (inputValueDate === "" && inputValueCity === "" && inputValueState === "") {
+        //     return info.shape === inputValueShape && info.country === inputValueCountry;
+        // }
+        // else if (inputValueDate === "" && inputValueCity === "") {
+        //     return info.shape === inputValueShape && info.country === inputValueCountry && info.state === inputValueState;
+        // }
+        // else if (inputValueDate === "") {
+        //     return info.shape === inputValueShape && info.country === inputValueCountry && info.state === inputValueState && info.city === inputValueCity;
+        // }
+        // else {
+        //     return info.datetime === inputValueDate;
+        // }
+        // };
+
+        // testing testing 1 2 3 WORKS FOR FIRST VALUE FILTER
+        // if (inputValueDate !== "") {
+        //     return info.datetime === inputValueDate;
+        // }
+        // if (inputValueCity !== "") {
+        //     return info.city === inputValueCity;
+        // }
+        // if (inputValueState !== "") {
+        //     return info.state === inputValueState;
+        // }
+        // if (inputValueCountry !== "") {
+        //     return info.country === inputValueCountry;
+        // }
+        // if (inputValueShape !== "") {
+        //     return info.shape === inputValueShape;
+        // }
+        };
+
 
     var results = tableData.filter(filterByInputs);
     console.log(results);
 
     // Now for table
-    // filterDate.forEach(function(fillTable) {
-    //           // console.log(fillTable); IT WORKS YAY
+    results.forEach(function(fillTable) {
+              // console.log(fillTable); IT WORKS YAY
 
-    //     // Add a row per filtered result
-    //     var row = tbody.append("tr");
+        // Add a row per filtered result
+        var row = tbody.append("tr");
 
-    //     // fill the table row values
-    //     Object.entries(fillTable).forEach(function([key, value]) {
-    //         // console.log(key, value); IT WORKS YAY
+        // fill the table row values
+        Object.entries(fillTable).forEach(function([key, value]) {
+            // console.log(key, value); IT WORKS YAY
             
-    //         // per row, add column elements
-    //         var cell = tbody.append("td");
+            // per row, add column elements
+            var cell = tbody.append("td");
 
-    //         // add data to column elements
-    //         cell.text(value);
-    //     })
-    // });
+            // add data to column elements
+            cell.text(value);
+        })
+    });
 };
