@@ -1,4 +1,3 @@
-// from data.js
 var tableData = data;
 
 // YOUR CODE HERE!
@@ -27,83 +26,18 @@ function retrieveFilter() {
 
     var inputElementShape = d3.select("#shape");
     var inputValueShape= inputElementShape.property("value");
-    
-    console.log(inputValueDate);
-    console.log(inputValueCity);
-    console.log(inputValueState);
-    console.log(inputValueCountry);
-    console.log(inputValueShape);
 
-            // var answers = [{"datetime": inputValueDate, 
-            //     "city": inputValueCity, 
-            //     "state": inputValueState, 
-            //     "country": inputValueCountry, 
-            //     "shape": inputValueShape}];
-            // console.log(answers);
-
-    function filterByInputs(info) {
-            // Trying to get a object with only the filled out values doesn't work
-            // for (var i = 0; i < answers.length; i++) {
-            //     if (answers.datetime !== "") {
-            //         return info.datetime === inputValueDate;
-            //     }
-            //     if (answers.city !== "") {
-            //         return info.city === inputValueCity;
-            //     }
-            //     if (answers.state !== "") {
-            //         return info.state === inputValueState;
-            //     }
-            //     if (answers.country !== "") {
-            //         return info.country === inputValueCountry;
-            //     }
-            //     if (answers.shape !== "") {
-            //         return info.shape === inputValueShape;
-            //     }
-            // };
-        
-        /////////// THIS WORKS IF THE VALUES ARE LEFT BLANK AND FILLED FROM THE BOTTOM UP!!!!
-        // if (inputValueDate === "" && inputValueCity === "" && inputValueState === "" && inputValueCountry === "") {
-        //     return info.shape === inputValueShape;
-        // }
-        // else if (inputValueDate === "" && inputValueCity === "" && inputValueState === "") {
-        //     return info.shape === inputValueShape && info.country === inputValueCountry;
-        // }
-        // else if (inputValueDate === "" && inputValueCity === "") {
-        //     return info.shape === inputValueShape && info.country === inputValueCountry && info.state === inputValueState;
-        // }
-        // else if (inputValueDate === "") {
-        //     return info.shape === inputValueShape && info.country === inputValueCountry && info.state === inputValueState && info.city === inputValueCity;
-        // }
-        // else {
-        //     return info.datetime === inputValueDate;
-        // }
-        // };
-
-        // testing testing 1 2 3 WORKS FOR FIRST VALUE FILTER
-        // if (inputValueDate !== "") {
-        //     return info.datetime === inputValueDate;
-        // }
-        // if (inputValueCity !== "") {
-        //     return info.city === inputValueCity;
-        // }
-        // if (inputValueState !== "") {
-        //     return info.state === inputValueState;
-        // }
-        // if (inputValueCountry !== "") {
-        //     return info.country === inputValueCountry;
-        // }
-        // if (inputValueShape !== "") {
-        //     return info.shape === inputValueShape;
-        // }
-        };
-
-
-    var results = tableData.filter(filterByInputs);
-    console.log(results);
+    var results = tableData.filter(function(filterdBy) {
+        return (filterdBy.datetime===inputValueDate || !inputValueDate) && 
+                    (filterdBy.city===inputValueCity || !inputValueCity) &&
+                    (filterdBy.state===inputValueState || !inputValueState) &&
+                    (filterdBy.country===inputValueCountry || !inputValueCountry) &&
+                    (filterdBy.shape===inputValueShape|| !inputValueShape)
+        });
+    console.log("Results: ", results);
 
     // Now for table
     results.forEach(function(fillTable) {
-              // console.log(fillTable); IT WORKS YAY
 
         // Add a row per filtered result
         var row = tbody.append("tr");
