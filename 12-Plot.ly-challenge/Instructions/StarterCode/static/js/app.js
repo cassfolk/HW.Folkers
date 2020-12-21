@@ -30,23 +30,8 @@ d3.json("samples.json").then((importedData) => {
     // console.log("importData: ", importedData);
     var data = importedData;
 
-    // Navigating json so you can extract variables
-    var samplesRow = getIntoRows(data.samples);
-    // console.log("samplesRow ", samplesRow);
-    var sampleObjects = avoidNumbers(samplesRow);
-    // console.log("sampleObjects ", sampleObjects);
-    var metadataRow = getIntoRows(data.metadata);
-
-
-    //Variables to plot
-    var otuIds = getIntoRows(sampleObjects.otu_ids);
-    var sampleValues = getIntoRows(sampleObjects.sample_values);
-    var otuLabels = getIntoRows(sampleObjects.otu_labels);
-    // console.log("otuIds ", otuIds);
-
     //Variables for dropdown
     var names = importedData.names; // for dropdown menu
-    
 
     /////////////// FINSIH YOU FOOL!!!!!!
     // console.log("metadataRow ", metadataRow);
@@ -59,8 +44,29 @@ d3.json("samples.json").then((importedData) => {
         sel.appendChild(opt);
     }
     var menuIndex = NEED HELP HERE
+                                                    /// if index
+                                                        // slice/sort
+                                                        // get variables
+                                                        // fill demo info WATCH OUT FOR NULL
+                                                        // bar
+                                                        // bubble
 
+    /// VARIABLES
+    /// VARIABLES
+    // // Navigating json so you can extract variables
+    // var samplesRow = getIntoRows(data.samples);
+    // // console.log("samplesRow ", samplesRow);
+    // var sampleObjects = avoidNumbers(samplesRow);
+    // // console.log("sampleObjects ", sampleObjects);
+    // var metadataRow = getIntoRows(data.metadata);
 
+    // //Variables to plot
+    // var otuIds = getIntoRows(sampleObjects.otu_ids);
+    // var sampleValues = getIntoRows(sampleObjects.sample_values);
+    // var otuLabels = getIntoRows(sampleObjects.otu_labels);
+    // // console.log("otuIds ", otuIds);
+
+    //// IF INDEX SELECT OTHER INDEX DATA
     // if (sel ==== names.findIndex(names => names === sel ) {
     //     // === metadataRow.index
     //     var list = d3.select("#sample-metadata");
@@ -73,49 +79,49 @@ d3.json("samples.json").then((importedData) => {
     //     list.append("dd").text(`wfreq: 1`);
     // };
     
+
+
     // var dropDown = d3.select("#selDataset");
                 ///see 15.02.09 for dropdown
                 /// if names index === (metadataRow index) then fill list
                 //// IF FREAKING NULL PUT NULL
-    // Demographic Ino formatting
+    
+    // Sort the data array using sampleValues the
+    // data.sort(function(a, b) {
+    //     return parseFloat(b.sampleValues) - parseFloat(a.sampleValues);
+    // });
 
+    // // // Slice the top 10 objects for plotting
+    // data = data.slice(0, 10);
 
+    // // // Reverse the array due to Plotly's defaults
+    // data = data.reverse();
+    
     // BAR
     // BAR
-        // Sort the data array using sampleValues the
-        // data.sort(function(a, b) {
-        //     return parseFloat(b.sampleValues) - parseFloat(a.sampleValues);
-        // });
+    // // // Trace1 for the Data
+    // var trace1 = {
+    //     x: otuIds,
+    //     y: sampleValues,
+    //     text: otuLabels,
+    //     // name: ,
+    //     type: "bar",
+    //     orientation: "h"
+    // };
 
-        // // // Slice the top 10 objects for plotting
-        // data = data.slice(0, 10);
+    // // // data   
+    // // var chartData = [trace1];
 
-        // // // Reverse the array due to Plotly's defaults
-        // data = data.reverse();
+    // // // Apply the group bar mode to the layout
+    // var layout = {       
+    //     margin: {
+    //     l: 100,
+    //     r: 100,
+    //     t: 100,
+    //     b: 100
+    //     }
+    // };
 
-        // // // Trace1 for the Data
-        // var trace1 = {
-        //     x: otuIds,
-        //     y: sampleValues,
-        //     text: otuLabels,
-        //     // name: ,
-        //     type: "bar",
-        //     orientation: "h"
-        // };
-
-        // // // data   
-        // // var chartData = [trace1];
-
-        // // // Apply the group bar mode to the layout
-        // var layout = {       
-        //     margin: {
-        //     l: 100,
-        //     r: 100,
-        //     t: 100,
-        //     b: 100
-        //     }
-        // };
-
-        // // // Render the plot to the div tag with id "plot"
-        // Plotly.newPlot("bar", trace1, layout);
+    // // // Render the plot to the div tag with id "plot"
+    // Plotly.newPlot("bar", trace1, layout);
 });
