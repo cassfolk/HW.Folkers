@@ -11,31 +11,18 @@
     //     // return row[index];
     // });
 
-function getIntoRows(rows) {
-    return rows.map(function(row) {
-        return row;
-    });
-};
+grabNames();
 
-
-function avoidNumbers(row) {
-    for (var i = 0; i < row.length; i++) {
-        var info = row[i];
-        return info;
-    };
-};
-
-
-d3.json("samples.json").then((importedData) => {
+function grabNames() {
+    d3.json("samples.json").then((importedData) => {
     // console.log("importData: ", importedData);
     var data = importedData;
 
     //Variables for dropdown
-    var names = importedData.names; // for dropdown menu
-
-    /////////////// FINSIH YOU FOOL!!!!!!
-    // console.log("metadataRow ", metadataRow);
+    var names = data.names; // for dropdown menu
     // console.log("Names: ", names);
+
+    // fill in dropdown menu with values
     var sel = document.getElementById('selDataset');
     for (var i = 0; i < names.length; i++) {
         var opt = document.createElement('option');
@@ -43,85 +30,132 @@ d3.json("samples.json").then((importedData) => {
         opt.value = names[i];
         sel.appendChild(opt);
     }
-    var menuIndex = NEED HELP HERE
-                                                    /// if index
-                                                        // slice/sort
-                                                        // get variables
-                                                        // fill demo info WATCH OUT FOR NULL
-                                                        // bar
-                                                        // bubble
+    });
+};
+
+function getIntoRows(rows) {
+    return rows.map(function(row) {
+        return row;
+    });
+};
+
+function runAllTheCode() {
+    d3.json("samples.json").then((importedData) => {
+    // console.log("importData: ", importedData);
+    var data = importedData;
+    var names = data.names;
+
+    var option = d3.select("select").selectAll("option").property("value");
+    console.log(option);
+
+    var indexValue = names.findIndex(name => name === option);
+    console.log("index: ", indexValue);
+
+                        /// if index
+                        // get variables
+
+                            // slice/sort
+                            // fill demo info WATCH OUT FOR NULL
+                            // bar
+                            // bubble
 
     /// VARIABLES
-    /// VARIABLES
-    // // Navigating json so you can extract variables
-    // var samplesRow = getIntoRows(data.samples);
-    // // console.log("samplesRow ", samplesRow);
-    // var sampleObjects = avoidNumbers(samplesRow);
-    // // console.log("sampleObjects ", sampleObjects);
-    // var metadataRow = getIntoRows(data.metadata);
+    // Navigating json so you can extract variables based on indexValue (aka option selected)
+    var samplesRow = getIntoRows(data.samples);
+    // console.log("samplesRow ", samplesRow);
+    var sampleIDRow = samplesRow[indexValue].id;
+    // console.log("sampleIDRow ", sampleIDRow);
+    var otuIds = (samplesRow[indexValue].otu_ids);
+    // console.log("otuIdsRAW ", otuIdsRAW);
+    var sampleValues = (samplesRow[indexValue].sample_values);
+    // console.log("sampleValues ", sampleValues);
+    var otuLabels = (samplesRow[indexValue].otu_labels);
+    // console.log("outLables ", otuLabels);
 
-    // //Variables to plot
-    // var otuIds = getIntoRows(sampleObjects.otu_ids);
-    // var sampleValues = getIntoRows(sampleObjects.sample_values);
-    // var otuLabels = getIntoRows(sampleObjects.otu_labels);
-    // // console.log("otuIds ", otuIds);
 
-    //// IF INDEX SELECT OTHER INDEX DATA
-    // if (sel ==== names.findIndex(names => names === sel ) {
-    //     // === metadataRow.index
-    //     var list = d3.select("#sample-metadata");
-    //     list.append("dd").text(`Id: 950`);
-    //     list.append("dd").text(`ethnicity: Cacausian`);
-    //     list.append("dd").text(`gender: F`);
-    //     list.append("dd").text(`age: 25`);
-    //     list.append("dd").text(`location: Beaufort`);
-    //     list.append("dd").text(`bbtype: 1`);
-    //     list.append("dd").text(`wfreq: 1`);
-    // };
+    //// Demographic Info filled in
+    var list = d3.select("#sample-metadata");
+    list.append("dd").text(`Id: ${data.metadata[indexValue].id}`);
+    list.append("dd").text(`ethnicity: ${data.metadata[indexValue].ethnicity}`);
+    list.append("dd").text(`gender: ${data.metadata[indexValue].gender}`);
+    list.append("dd").text(`age: ${data.metadata[indexValue].age}`);
+    list.append("dd").text(`location: ${data.metadata[indexValue].location}`);
+    list.append("dd").text(`bbtype: ${data.metadata[indexValue].bbtype}`);
+    list.append("dd").text(`wfreq: ${data.metadata[indexValue].wfreq}`);
+                                    //// CHECK ONCE YOU CAN SWITCH HOW DOES NULLLLLLLLLLLLLLLLLLL
     
-
-
-    // var dropDown = d3.select("#selDataset");
-                ///see 15.02.09 for dropdown
-                /// if names index === (metadataRow index) then fill list
-                //// IF FREAKING NULL PUT NULL
+    // Bar SLICE info
+    // Sort & slice the data array using sampleValues the
+    var sampleValuesSlice = sampleValues.map(row => row);
+    sampleValuesSlice.sort(function(a, b) {
+            return parseFloat(b.sampleValues) - parseFloat(a.sampleValues);
+        })
+    sampleValuesSlice = sampleValuesSlice.slice(0, 10);
+    console.log(sampleValuesSlice);
     
-    // Sort the data array using sampleValues the
-    // data.sort(function(a, b) {
-    //     return parseFloat(b.sampleValues) - parseFloat(a.sampleValues);
-    // });
+    var otuIdsSlice = otuIds.map(row => row).slice(0, 10);
 
-    // // // Slice the top 10 objects for plotting
-    // data = data.slice(0, 10);
+    var otuIdsSliceFinal = otuIdsSlice.map(function(el) {
+        return "OTU " + el});
+    console.log(otuIdsSliceFinal);
 
-    // // // Reverse the array due to Plotly's defaults
-    // data = data.reverse();
-    
-    // BAR
-    // BAR
-    // // // Trace1 for the Data
-    // var trace1 = {
-    //     x: otuIds,
-    //     y: sampleValues,
-    //     text: otuLabels,
-    //     // name: ,
-    //     type: "bar",
-    //     orientation: "h"
+    var otuLabelsSlice = otuLabels.map(row => row).slice(0, 10);
+    console.log(otuLabelsSlice);
+
+
+
+    // // BAR
+    var trace1 = {
+        x: sampleValuesSlice,
+        y: otuIdsSliceFinal,
+        mode: 'markers',
+        marker: {size:12},
+        text: otuLabelsSlice,
+        type: "bar",
+        orientation: "h"
+    };
+
+    // data   
+    var chartDataBar = [trace1];
+
+    // Apply the group bar mode to the layout
+    var layout = {  
+        yaxis:{
+            autorange:'reversed'
+        },
+    };
+
+    // Render the plot to the div tag with id "plot"
+    Plotly.newPlot("bar", chartDataBar, layout);
+
+
+    // // BUBBLE!
+    var trace2 = {
+        x: otuIds,
+        y: sampleValues,
+        mode: 'markers',
+        marker: {
+            size: sampleValues,
+            color: sampleValues,
+            colorscale: 'Earth',
+            type: 'heatmap'
+        },
+        text: otuLabels,
+        type: "bubble",
+    };
+
+    // data   
+    var chartDataBubble = [trace2];
+
+    // Apply the group bar mode to the layout
+    // var layout = {  
     // };
 
-    // // // data   
-    // // var chartData = [trace1];
+    // Render the plot to the div tag with id "plot"
+    Plotly.newPlot("bubble", chartDataBubble);
 
-    // // // Apply the group bar mode to the layout
-    // var layout = {       
-    //     margin: {
-    //     l: 100,
-    //     r: 100,
-    //     t: 100,
-    //     b: 100
-    //     }
-    // };
 
-    // // // Render the plot to the div tag with id "plot"
-    // Plotly.newPlot("bar", trace1, layout);
-});
+    });
+};
+
+runAllTheCode();
