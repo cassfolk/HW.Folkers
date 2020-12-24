@@ -72,3 +72,39 @@ function avoidNumbers(row) {
         return info;
     };
 };
+
+
+    // TRYING things for getIntoRows
+    //return rows.map(function(row) {
+    //                     // for (var i =0; i < row.length; i++) {
+    //                     //     rows.map(function(row) {
+    //                     //         return row[index];
+    //                     //     });
+    //                     // };
+    //     return rows.map(function(row){
+    //         return row[index];
+    //     });
+    //     // return row[index];
+    // });
+
+
+
+    // function clearDemo() {
+//     d3.select("#sample-metadata").select("after");
+// };
+
+// clearDemo();
+
+// d3.select("selDataset").on("change", optionChanged);
+
+// need to id "optionChanged" in code somehow
+// need to clear out demographic info
+
+
+
+
+// var optionChanged = d3.select("select").selectAll("optionChanged").property("value");
+// console.log(optionChanged);
+
+        // var indexValue = names.findIndex(name => name === option);
+        // console.log("index: ", indexValue);

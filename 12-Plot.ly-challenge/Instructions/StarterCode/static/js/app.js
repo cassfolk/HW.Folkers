@@ -1,16 +1,3 @@
-    // TRYING things for getIntoRows
-    //return rows.map(function(row) {
-    //                     // for (var i =0; i < row.length; i++) {
-    //                     //     rows.map(function(row) {
-    //                     //         return row[index];
-    //                     //     });
-    //                     // };
-    //     return rows.map(function(row){
-    //         return row[index];
-    //     });
-    //     // return row[index];
-    // });
-
 grabNames();
 
 function grabNames() {
@@ -39,31 +26,27 @@ function getIntoRows(rows) {
     });
 };
 
-function runAllTheCode() {
+
+optionChanged();
+
+function optionChanged(option = "940") {
+    // alert("hi");
     d3.json("samples.json").then((importedData) => {
     // console.log("importData: ", importedData);
     var data = importedData;
     var names = data.names;
 
-    var option = d3.select("select").selectAll("option").property("value");
-    console.log(option);
+    // var option = d3.select("select").selectAll("option").property("value");
+    console.log("Option: ", option);
 
     var indexValue = names.findIndex(name => name === option);
-    console.log("index: ", indexValue);
-
-                        /// if index
-                        // get variables
-
-                            // slice/sort
-                            // fill demo info WATCH OUT FOR NULL
-                            // bar
-                            // bubble
+    // console.log("index: ", indexValue);
 
     /// VARIABLES
     // Navigating json so you can extract variables based on indexValue (aka option selected)
     var samplesRow = getIntoRows(data.samples);
     // console.log("samplesRow ", samplesRow);
-    var sampleIDRow = samplesRow[indexValue].id;
+    // var sampleIDRow = samplesRow[indexValue].id;
     // console.log("sampleIDRow ", sampleIDRow);
     var otuIds = (samplesRow[indexValue].otu_ids);
     // console.log("otuIdsRAW ", otuIdsRAW);
@@ -74,7 +57,8 @@ function runAllTheCode() {
 
 
     //// Demographic Info filled in
-    var list = d3.select("#sample-metadata");
+    var list = d3.select("#sample-metadata").text("");
+    // var idDemo = data.metadata[indexValue].id
     list.append("dd").text(`Id: ${data.metadata[indexValue].id}`);
     list.append("dd").text(`ethnicity: ${data.metadata[indexValue].ethnicity}`);
     list.append("dd").text(`gender: ${data.metadata[indexValue].gender}`);
@@ -91,18 +75,16 @@ function runAllTheCode() {
             return parseFloat(b.sampleValues) - parseFloat(a.sampleValues);
         })
     sampleValuesSlice = sampleValuesSlice.slice(0, 10);
-    console.log(sampleValuesSlice);
+    // console.log(sampleValuesSlice);
     
     var otuIdsSlice = otuIds.map(row => row).slice(0, 10);
 
     var otuIdsSliceFinal = otuIdsSlice.map(function(el) {
         return "OTU " + el});
-    console.log(otuIdsSliceFinal);
+    // console.log(otuIdsSliceFinal);
 
     var otuLabelsSlice = otuLabels.map(row => row).slice(0, 10);
-    console.log(otuLabelsSlice);
-
-
+    // console.log(otuLabelsSlice);
 
     // // BAR
     var trace1 = {
@@ -147,15 +129,9 @@ function runAllTheCode() {
     // data   
     var chartDataBubble = [trace2];
 
-    // Apply the group bar mode to the layout
-    // var layout = {  
-    // };
-
     // Render the plot to the div tag with id "plot"
     Plotly.newPlot("bubble", chartDataBubble);
 
 
     });
 };
-
-runAllTheCode();
