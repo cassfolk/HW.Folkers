@@ -60,7 +60,7 @@ d3.csv("https://raw.githubusercontent.com/cassfolk/HW.Folkers/master/13-D3-chall
     chartGroup.append("g")
         .call(leftAxis)
     
-    //Step 5: Create Circles    
+    //Step 5: Create circles & circle text
     var circleG = chartGroup.selectAll("svg")
         .data(healthData)
         .enter()
