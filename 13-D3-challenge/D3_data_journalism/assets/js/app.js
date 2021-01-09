@@ -60,22 +60,24 @@ d3.csv("https://raw.githubusercontent.com/cassfolk/HW.Folkers/master/13-D3-chall
     chartGroup.append("g")
         .call(leftAxis)
     
-    //Step 5: Create Circles
-    var circlesGroup = chartGroup.selectAll("circle")
+    //Step 5: Create Circles    
+    var circleG = chartGroup.selectAll("g")
         .data(healthData)
         .enter()
-        .append("circle")
-        .attr("cx", d => xLinearScale(d.poverty))
-        .attr("cy", d => yLinearScale(d.healthcare))
+        .append("g")
+        .attr("transform", d => `translate(${xLinearScale(d.poverty)}, ${yLinearScale(d.healthcare)})`);
+
+
+    var circlesGroup = circleG.append("circle")
         .attr("r", "15")
-        .attr("class", "stateCircle");
-    
-    var circlesLables = chartGroup.selectAll("circle")
-        .data(healthData)
-        .enter()
-        .append("text")
-        .attr("text", d => healthData.abbr)
+        .attr("class", "stateCircle")
+        .attr("text", d => d.abbr);
+
+    var circlesLables = circleG.append("text")
+        .text(d => d.abbr)
+        .attr('dy', 6)
         .attr("class", "stateText");
+
  
 
     // Step 6: Initialize tool tip
@@ -91,7 +93,7 @@ d3.csv("https://raw.githubusercontent.com/cassfolk/HW.Folkers/master/13-D3-chall
     chartGroup.call(toolTip);
 
     // Step 8: Create event listeners to display and hide the tooltip
-    circlesGroup.on("mouseover", function(data){
+    circlesLables.on("mouseover", function(data){
         toolTip.show(data, this);
     })
     .on("mouseout", function(data, index){
