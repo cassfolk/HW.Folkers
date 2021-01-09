@@ -1,5 +1,5 @@
 // @TODO: YOUR CODE HERE!
-var svgWidth = 900;
+var svgWidth = 750;
 var svgHeight = 500;
 
 var margin = {
@@ -61,7 +61,7 @@ d3.csv("https://raw.githubusercontent.com/cassfolk/HW.Folkers/master/13-D3-chall
         .call(leftAxis)
     
     //Step 5: Create Circles    
-    var circleG = chartGroup.selectAll("g")
+    var circleG = chartGroup.selectAll("svg")
         .data(healthData)
         .enter()
         .append("g")
