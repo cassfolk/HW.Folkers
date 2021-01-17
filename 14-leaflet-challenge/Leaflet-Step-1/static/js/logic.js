@@ -8,27 +8,48 @@ function createMap(earthQuakes) {
       accessToken: API_KEY
     });
   
-    // Create a baseMaps object to hold the lightmap layer
-    var baseMaps = {
-      "Light Map": lightmap
-    };
-  
-    // Create an overlayMaps object to hold the earthQuakes layer
-    var overlayMaps = {
-      "Earth Quakes": earthQuakes
-    };
+                // // Create a baseMaps object to hold the lightmap layer
+                // var baseMaps = {
+                //   "Light Map": lightmap,
+                // };
+            
+                // // Create an overlayMaps object to hold the earthQuakes layer
+                // var overlayMaps = {
+                //   "Earth Quakes": earthQuakes
+                // };
   
     // Create the map object with options
     var map = L.map("mapid", {
       center: [39.8283, -98.5795],
-      zoom: 5,
+      zoom: 4.5,
       layers: [lightmap, earthQuakes]
     });
   
-    // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
-    L.control.layers(baseMaps, overlayMaps, {
-      collapsed: false
-    }).addTo(map);
+                // // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
+                // L.control.layers(baseMaps, overlayMaps, {
+                //   collapsed: false
+                // }).addTo(map);
+
+    // Create Legend
+    var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+    labels = [],
+    categoryNames = ['Below 10','10-30','30-50','50-70','70-90', '90+'];
+    categories = [9, 11, 31, 51, 71, 91]
+    
+    // For each category do...
+    for (var i = 0; i < categories.length; i++) {
+            div.innerHTML += 
+            labels.push(
+                '<li class="legend" style=\"background-color: ' + getColor(categories[i]) + '"></li> ' +
+            (categories[i] ? categoryNames[i] : '+'));
+        }
+        div.innerHTML = labels.join("<br>");
+    return div;
+    };
+    legend.addTo(map);
 }
 
   // https://stackoverflow.com/questions/37357755/assign-color-of-leaflet-circlemarker-to-range-of-values
@@ -70,9 +91,6 @@ function createMarkers(response) {
         var size = +site.properties.mag;
         // console.log(size);
 
-                            ///// SEE 02-04 for help!!!!!
-                            // legend
-
         // Change default marker
         var geojsonMarkerOptions = {
             radius: size * 3,
@@ -86,7 +104,7 @@ function createMarkers(response) {
 
         // For each site, create a marker and bind a popup with the site's info
         var earthQuakeMarker = L.circleMarker([lat, lon], geojsonMarkerOptions)
-            .bindPopup("<h1>" + site.properties.title + "<hr><h3>Depth: " + depth +"</h1></h3>");
+            .bindPopup("<h3>" + site.properties.title + "<hr>Depth: " + depth +" km </h3>");
         
     // Add the marker to the Sites array
     earthQuakeSites.push(earthQuakeMarker);
@@ -95,6 +113,7 @@ function createMarkers(response) {
 
     // Create a layer group made from the earth quake markers array, pass it into the createMap function
     createMap(L.layerGroup(earthQuakeSites));
+    
 }
   
   
