@@ -2,6 +2,7 @@
 IGNORE
 __pycache__
 .DS_Store
+
 <<<<<<< HEAD
 election_data.csv
 =======
@@ -10,4 +11,5 @@ election_data.csv
 
 api_keys.py
 
-15-tableau/Resources/Months_csv/*
+
+15-tableau/Resources/Month_csv/*
