@@ -10,11 +10,4 @@ election_data.csv
 
 api_keys.py
 
-Months_csv/2019
-Months_csv/2020
-
-JC-201901-citibike-tripdata.csv
-JC-201902-citibike-tripdata.csvJC-201903-citibike-tripdata.csvJC-201904-citibike-tripdata.csvJC-201905-citibike-tripdata.csvJC-201906-citibike-tripdata.csvJC-201907-citibike-tripdata.csvJC-201908-citibike-tripdata.csvJC-201909-citibike-tripdata.csvJC-201910-citibike-tripdata.csvJC-201911-citibike-tripdata.csvJC-201912-citibike-tripdata.csv
-
-JC-202001-citibike-tripdata.csvJC-202002-citibike-tripdata.csvJC-202003-citibike-tripdata.csvJC-202004-citibike-tripdata.csvJC-202005-citibike-tripdata.csvJC-202006-citibike-tripdata.csvJC-202007-citibike-tripdata.csvJC-202008-citibike-tripdata.csvJC-202009-citibike-tripdata.csvJC-202010-citibike-tripdata.csvJC-202011-citibike-tripdata.csvJC-202012-citibike-tripdata.csv
-
+15-tableau/Resources/Months_csv
